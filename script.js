@@ -8,8 +8,8 @@ app.use(express.json());
 app.listen(3000);
 app.use(
   cors({
-    // origin: "https://ragunath-forget-password.netlify.app",
-    origin: "http://localhost:5173",
+    origin: "https://ragunath-password-reset.netlify.app",
+    // origin: "http://localhost:5173",
   })
 );
 const URL = process.env.DB;
@@ -100,7 +100,7 @@ app.put("/generateotp/:email", async (req, res) => {
       to:[email],
       subject:"Password Reset.",
       text:"otp",
-      html: `<p>Click <a href="http://localhost:5173/newpassword?email=${email}&otp=${otp}">here</a> to change your password.</p>`
+      html: `<p>Click <a href="https://ragunath-password-reset.netlify.app/newpassword?email=${email}&otp=${otp}">here</a> to change your password.</p>`
     }
     await sendmail(mailoptions)
     res.json("otpsent");
